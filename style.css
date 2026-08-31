@@ -1,0 +1,416 @@
+/* =====================================================
+   DESIGN SYSTEM - CODRATEC BIO SITE
+   Baseado em princípios de Product Design (UI/UX)
+===================================================== */
+
+:root {
+  /* Cores de Marca & Neutras */
+  --color-brand-primary: #0f4cbd;
+  --color-brand-hover: #0b3d91;
+  --color-brand-active: #082d6c;
+  
+  --color-bg-page: #f8fafc;
+  --color-bg-card: #ffffff;
+  --color-bg-subtle: #f1f5f9;
+  
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-tertiary: #94a3b8;
+  
+  --color-border: #e2e8f0;
+  --color-border-hover: #cbd5e1;
+  
+  --color-success: #10b981;
+  --color-focus-ring: #0f4cbd;
+
+  /* Tipografia */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Geometria & Sombras */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+}
+
+/* RESET MINIMALISTA & ACESSIBILIDADE */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100vh;
+  background-color: var(--color-bg-page);
+}
+
+body {
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* EFEITOS ELEGANTES DE LUZ E ESTRUTURA NO FUNDO */
+.bg-light {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 540px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(15, 76, 189, 0.08) 0%, rgba(79, 70, 229, 0.03) 50%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  opacity: 0.035;
+  background-image: 
+    linear-gradient(to right, var(--color-text-primary) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-text-primary) 1px, transparent 1px);
+  background-size: 2.5rem 2.5rem;
+  pointer-events: none;
+  z-index: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+  text-align: left;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* FOCUS ACCESSIBILITY (WCAG Standard) */
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* LAYOUT CONTAINER */
+.page-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* NO MOBILE: SEM CAIXA/CARD, FLUI NATIVO NA TELA */
+.card {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  width: 100%;
+}
+
+/* DESKTOP (>= 640px): APLICA O CARD E ESTRUTURA COM SOMBRA SUAVE DE SOBREPOSIÇÃO */
+@media (min-width: 640px) {
+  body {
+    padding: 40px 16px;
+  }
+
+  .card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 36px 28px;
+    box-shadow: 0 12px 32px -4px rgba(15, 23, 42, 0.06), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+  }
+}
+
+/* HEADER DO PERFIL */
+.card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.avatar-wrap {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background-color: var(--color-text-primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.5px;
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+}
+
+.status-indicator {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-success);
+  border: 2.5px solid #ffffff;
+  border-radius: 50%;
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: var(--color-text-primary);
+  line-height: 1.25;
+}
+
+.role {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-top: 4px;
+}
+
+.brand-link {
+  color: var(--color-brand-primary);
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.brand-link:hover {
+  color: var(--color-brand-hover);
+  text-decoration: underline;
+}
+
+.bio {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  margin-top: 10px;
+  line-height: 1.45;
+  max-width: 320px;
+}
+
+/* SEÇÃO DE AÇÕES & BOTÕES */
+.actions-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+/* COMPONENTE BOTÃO COM ESTADOS COMPLETOS */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: var(--radius-md);
+  font-size: 14.5px;
+  font-weight: 600;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+  user-select: none;
+  position: relative;
+}
+
+.btn-svg {
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.btn-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* BOTÃO PRIMÁRIO (WHATSAPP) */
+.btn-primary {
+  background-color: var(--color-brand-primary);
+  border: 1px solid var(--color-brand-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 76, 189, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-brand-hover);
+  border-color: var(--color-brand-hover);
+  box-shadow: 0 6px 16px rgba(15, 76, 189, 0.28);
+}
+
+.btn-primary:active {
+  background-color: var(--color-brand-active);
+  transform: scale(0.99);
+  box-shadow: 0 2px 8px rgba(15, 76, 189, 0.2);
+}
+
+/* BOTÃO SECUNDÁRIO (VCARD / CONTATO) */
+.btn-secondary {
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-bg-subtle);
+  border-color: var(--color-border-hover);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.btn-secondary:active {
+  background-color: #e2e8f0;
+  transform: scale(0.99);
+}
+
+/* BOTÃO TERCIÁRIO (LINKS SECUNDÁRIOS & CÓPIA) */
+.btn-tertiary {
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.btn-tertiary:hover {
+  background-color: var(--color-bg-subtle);
+  border-color: var(--color-border-hover);
+  color: var(--color-text-primary);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.btn-tertiary:active {
+  background-color: #e2e8f0;
+  transform: scale(0.99);
+}
+
+/* ESTADO DISABLED E LOADING */
+.btn:disabled, .btn.is-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.spinner-icon {
+  display: none;
+  animation: spin 0.8s linear infinite;
+}
+
+.btn.is-loading .default-icon {
+  display: none;
+}
+
+.btn.is-loading .spinner-icon {
+  display: block;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* FOOTER DO CARD & REDES SOCIAIS */
+.card-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+}
+
+.social-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.social-link:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-subtle);
+}
+
+.brand-tag {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--color-text-tertiary);
+}
+
+/* TOAST FEEDBACK COMPONENT */
+.toast {
+  position: fixed;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%) translateY(40px);
+  opacity: 0;
+  visibility: hidden;
+  background-color: var(--color-text-primary);
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  transition: transform 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
+}
+
+.toast.is-visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.toast-icon {
+  color: var(--color-success);
+}
