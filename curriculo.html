@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currículo — Victor Hugo | Full Stack Developer</title>
+  <meta name="description" content="Currículo de Victor Hugo. Desenvolvedor Full Stack com experiência em React, Next.js, TypeScript, Python, Node.js, PostgreSQL e SQL Server. Coordenador de TI no Mobi Banco e Founder da Codratec.">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 40px 20px;
+    }
+
+    a {
+      color: #0f4cbd;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* BARRA SUPERIOR DISCRETA DE AÇÕES */
+    .top-actions {
+      max-width: 720px;
+      margin: 0 auto 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .btn-print-clean {
+      background: #0f172a;
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-print-clean:hover {
+      background: #1e293b;
+    }
+
+    /* CONTAINER DO CURRÍCULO (EXECUTIVO FACTUAL) */
+    .cv-container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* HEADER DO CURRÍCULO */
+    .cv-header {
+      margin-bottom: 28px;
+    }
+
+    .cv-name {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      color: #0f172a;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .cv-subtitle {
+      font-size: 15px;
+      font-weight: 600;
+      color: #0f4cbd;
+      margin-bottom: 12px;
+    }
+
+    .cv-contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      font-size: 13px;
+      color: #475569;
+    }
+
+    .cv-contact-row span {
+      display: flex;
+      align-items: center;
+    }
+
+    /* SEÇÕES DO CURRÍCULO */
+    .cv-section {
+      margin-bottom: 28px;
+    }
+
+    .cv-section-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #0f172a;
+      border-bottom: 1.5px solid #0f172a;
+      padding-bottom: 4px;
+      margin-bottom: 14px;
+    }
+
+    .cv-summary {
+      font-size: 14px;
+      color: #334155;
+      line-height: 1.65;
+    }
+
+    /* EXPERIÊNCIAS E PROJETOS */
+    .cv-item {
+      margin-bottom: 20px;
+    }
+
+    .cv-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .cv-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+
+    .cv-item-role {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .cv-item-company {
+      font-weight: 600;
+      color: #0f4cbd;
+    }
+
+    .cv-item-date {
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .cv-item-sub {
+      font-size: 12.5px;
+      color: #64748b;
+      margin-bottom: 6px;
+    }
+
+    .cv-item-desc {
+      font-size: 13.5px;
+      color: #334155;
+    }
+
+    .cv-bullets {
+      margin-top: 6px;
+      padding-left: 18px;
+      font-size: 13.5px;
+      color: #334155;
+    }
+
+    .cv-bullets li {
+      margin-bottom: 4px;
+    }
+
+    /* COMPETÊNCIAS TÉCNICAS */
+    .cv-skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13.5px;
+    }
+
+    .cv-skill-line strong {
+      color: #0f172a;
+      font-weight: 600;
+      min-width: 140px;
+      display: inline-block;
+    }
+
+    .cv-skill-line span {
+      color: #475569;
+    }
+
+    /* ESTILOS DE IMPRESSÃO (PDF EXPORT) */
+    @media print {
+      body {
+        padding: 0;
+      }
+
+      .top-actions {
+        display: none !important;
+      }
+
+      .cv-container {
+        max-width: 100%;
+      }
+
+      @page {
+        size: A4;
+        margin: 18mm 15mm;
+      }
+    }
+
+    /* RESPONSIVO MOBILE */
+    @media (max-width: 640px) {
+      body {
+        padding: 24px 16px;
+      }
+
+      .cv-name {
+        font-size: 26px;
+      }
+
+      .cv-contact-row {
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .cv-skill-line strong {
+        display: block;
+        margin-bottom: 2px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- BARRA DE AÇÕES DISCRETA SUPERIOR -->
+  <div class="top-actions">
+    <a href="index.html">← Voltar para a Bio</a>
+    <button onclick="window.print()" class="btn-print-clean">Imprimir / Salvar em PDF</button>
+  </div>
+
+  <!-- CONTEÚDO DO CURRÍCULO -->
+  <main class="cv-container">
+
+    <!-- HEADER DE IDENTIDADE -->
+    <header class="cv-header">
+      <h1 class="cv-name">Victor Hugo</h1>
+      <div class="cv-subtitle">Full Stack Developer | React · Next.js · TypeScript · Python · Node.js</div>
+      
+      <div class="cv-contact-row">
+        <span>Rio de Janeiro, Brasil</span>
+        <span>Tel: (21) 98357-3881</span>
+        <span>E-mail: <a href="mailto:victor@codratec.com.br">victor@codratec.com.br</a></span>
+        <span>Site: <a href="https://codratec.com.br" target="_blank">codratec.com.br</a></span>
+        <span>GitHub: <a href="https://github.com/viteeet" target="_blank">github.com/viteeet</a></span>
+        <span>LinkedIn: <a href="https://www.linkedin.com/in/victor-hugo-8785451b9" target="_blank">linkedin.com/in/victor-hugo-8785451b9</a></span>
+      </div>
+    </header>
+
+    <!-- RESUMO PROFISSIONAL -->
+    <section class="cv-section">
+      <h2 class="cv-section-title">Resumo Profissional</h2>
+      <p class="cv-summary">
+        Desenvolvedor Full Stack com experiência no desenvolvimento de aplicações web, APIs, automações e sistemas internos. Atuo principalmente com React, Next.js, TypeScript, Python, Node.js e SQL, participando do desenvolvimento de soluções desde a arquitetura até a implementação e manutenção. Também desenvolvo produtos SaaS próprios através da Codratec, incluindo aplicações multi-tenant, automações e integrações com serviços de IA.
+      </p>
+    </section>
+
+    <!-- EXPERIÊNCIA PROFISSIONAL -->
+    <section class="cv-section">
+      <h2 class="cv-section-title">Experiência Profissional</h2>
+
+      <!-- MOBI BANCO (COORDENADOR DE TI) -->
+      <div class="cv-item">
+        <div class="cv-item-header">
+          <div class="cv-item-role">Coordenador de TI — <span class="cv-item-company">Mobi Banco</span></div>
+          <div class="cv-item-date">Abril 2022 — Presente</div>
+        </div>
+        <div class="cv-item-sub">Fundo de Investimento em Direitos Creditórios (FIDC) • Rio de Janeiro, RJ</div>
+        <ul class="cv-bullets">
+          <li>Desenvolvimento e manutenção de sistemas internos e dashboards de suporte às operações financeiras e de crédito.</li>
+          <li>Consumo de REST APIs, automação de web scraping e captura de requisições para alimentação e estruturação de banco de dados SQL Server.</li>
+          <li>Desenvolvimento de pipelines ETL em Python e SQL para automação de rotinas operacionais e consolidação de relatórios.</li>
+        </ul>
+      </div>
+
+      <!-- MOBI BANCO (ASSISTENTE ADMIN) -->
+      <div class="cv-item">
+        <div class="cv-item-header">
+          <div class="cv-item-role">Assistente Administrativo — <span class="cv-item-company">Mobi Banco</span></div>
+          <div class="cv-item-date">Maio 2022 — Agosto 2022</div>
+        </div>
+        <p class="cv-item-desc">Suporte operacional administrativo e suporte técnico inicial às rotinas de TI.</p>
+      </div>
+
+      <!-- CODRATEC SOFTWARE HOUSE -->
+      <div class="cv-item">
+        <div class="cv-item-header">
+          <div class="cv-item-role">Founder &amp; Software Engineer — <span class="cv-item-company">Codratec Software House</span></div>
+          <div class="cv-item-date">2023 — Presente</div>
+        </div>
+        <ul class="cv-bullets">
+          <li>Desenvolvimento de produtos SaaS e aplicações web full stack.</li>
+          <li>Desenvolvimento utilizando React, Next.js, TypeScript, Node.js, Python e PostgreSQL.</li>
+          <li>Criação de automações e integrações com APIs externas e serviços de IA.</li>
+          <li>Arquitetura e desenvolvimento de aplicações multi-tenant.</li>
+        </ul>
+      </div>
+
+      <!-- PRAF SOLUÇÃO E TECNOLOGIA (UNIFICADA) -->
+      <div class="cv-item">
+        <div class="cv-item-header">
+          <div class="cv-item-role">Analista Administrativo Sênior / Assistente — <span class="cv-item-company">PRAF Solução e Tecnologia</span></div>
+          <div class="cv-item-date">Março 2017 — Julho 2022</div>
+        </div>
+        <div class="cv-item-sub">Rio de Janeiro, Brasil</div>
+        <p class="cv-item-desc">Análise de dados operacionais, gestão de contas a receber e automação de planilhas financeiras.</p>
+      </div>
+    </section>
+
+    <!-- PROJETOS & PRODUTOS SAAS -->
+    <section class="cv-section">
+      <h2 class="cv-section-title">Produtos &amp; Projetos Autorais</h2>
+
+      <div class="cv-item">
+        <div class="cv-item-header">
+          <div class="cv-item-role">CodraCare (<a href="https://codra-care.vercel.app/" target="_blank" rel="noopener noreferrer">codra-care.vercel.app</a>)</div>
+          <div class="cv-item-date">SaaS / Saúde</div>
+        </div>
+        <p class="cv-item-desc">
+          Plataforma de gestão e agendamento online sob medida para clínicas e consultórios de saúde. Arquitetada com <strong>Next.js, Supabase, Node.js e Tailwind CSS</strong>.
+        </p>
+      </div>
+
+      <div class="cv-item">
+        <div class="cv-item-header">
+          <div class="cv-item-role">Cartular — Conversor CNAB (<a href="https://cartular.com.br" target="_blank" rel="noopener noreferrer">cartular.com.br</a>)</div>
+          <div class="cv-item-date">Fintech / SaaS</div>
+        </div>
+        <p class="cv-item-desc">
+          Sistema web para parsing e conversão de arquivos bancários CNAB para layouts próprios com mapeamento dinâmico de dados.
+        </p>
+      </div>
+
+      <div class="cv-item">
+        <div class="cv-item-header">
+          <div class="cv-item-role">MV Arte Digital (<a href="https://mvartedigital.vercel.app/" target="_blank" rel="noopener noreferrer">mvartedigital.vercel.app</a>)</div>
+          <div class="cv-item-date">E-commerce / Automação</div>
+        </div>
+        <p class="cv-item-desc">
+          Plataforma e-commerce com entrega automatizada de arquivos digitais pós-compra.
+        </p>
+      </div>
+    </section>
+
+    <!-- COMPETÊNCIAS TÉCNICAS -->
+    <section class="cv-section">
+      <h2 class="cv-section-title">Competências Técnicas</h2>
+
+      <div class="cv-skills-list">
+        <div class="cv-skill-line">
+          <strong>Frontend:</strong> <span>React, Next.js, TypeScript, JavaScript, HTML5, CSS3, Tailwind CSS</span>
+        </div>
+        <div class="cv-skill-line">
+          <strong>Backend:</strong> <span>Node.js, Python, REST APIs, Webhooks, Web Scraping</span>
+        </div>
+        <div class="cv-skill-line">
+          <strong>Banco de Dados:</strong> <span>SQL Server, PostgreSQL, SQL, Supabase</span>
+        </div>
+        <div class="cv-skill-line">
+          <strong>Infraestrutura:</strong> <span>Docker, Linux, Git, GitHub, Vercel</span>
+        </div>
+        <div class="cv-skill-line">
+          <strong>IA &amp; Automação:</strong> <span>Integrações com APIs de IA (OpenAI / Gemini), Automação de processos</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMAÇÃO ACADÊMICA & IDIOMAS -->
+    <section class="cv-section">
+      <h2 class="cv-section-title">Educação &amp; Formação</h2>
+
+      <div class="cv-item">
+        <div class="cv-item-header">
+          <div class="cv-item-role">Tecnólogo em Análise e Desenvolvimento de Sistemas — <span class="cv-item-company">Estácio</span></div>
+          <div class="cv-item-date">Maio 2023 — Outubro 2025</div>
+        </div>
+      </div>
+
+      <div class="cv-item">
+        <div class="cv-item-header">
+          <div class="cv-item-role">Formação Profissional em Banco de Dados SQL — <span class="cv-item-company">Digital Max</span></div>
+        </div>
+      </div>
+
+      <div class="cv-item">
+        <div class="cv-item-header">
+          <div class="cv-item-role">Profissionalizante em Informática — <span class="cv-item-company">CEDASPY</span></div>
+        </div>
+      </div>
+
+      <div class="cv-item" style="margin-top: 14px;">
+        <div class="cv-item-desc">
+          <strong>Idiomas:</strong> Português (Nativo) • Inglês (Leitura &amp; Comunicação Técnica)
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+
+</html>

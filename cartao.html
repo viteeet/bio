@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cartão de Visita — Victor Hugo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      background: #dfe5ec;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 35px;
+      padding: 40px;
+
+      font-family: "DM Sans", sans-serif;
+    }
+
+
+    /* =====================================================
+       CARTÃO (90mm x 50mm Padrão de Impressão)
+    ====================================================== */
+
+    .card {
+      width: 90mm;
+      height: 50mm;
+
+      position: relative;
+      overflow: hidden;
+
+      background: #ffffff;
+
+      box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.14),
+        0 3px 10px rgba(15, 23, 42, 0.08);
+    }
+
+
+    /* =====================================================
+       FRENTE DO CARTÃO
+    ====================================================== */
+
+    .front {
+      padding: 8mm 9mm;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+
+    .front::before {
+      content: "";
+
+      position: absolute;
+
+      width: 48mm;
+      height: 48mm;
+
+      right: -24mm;
+      bottom: -24mm;
+
+      border: 1px solid #e2e8f0;
+
+      border-radius: 50%;
+    }
+
+
+    .front::after {
+      content: "";
+
+      position: absolute;
+
+      width: 30mm;
+      height: 30mm;
+
+      right: -12mm;
+      bottom: -12mm;
+
+      border: 1px solid #f1f5f9;
+
+      border-radius: 50%;
+    }
+
+
+    /* =====================================================
+       IDENTIDADE DA FRENTE
+    ====================================================== */
+
+    .identity {
+      position: relative;
+      z-index: 2;
+    }
+
+
+    .name {
+      margin: 0;
+
+      font-size: 30px;
+      line-height: 0.95;
+
+      font-weight: 800;
+
+      letter-spacing: -1.4px;
+
+      color: #0f172a;
+    }
+
+
+    .role {
+      margin-top: 1.8mm;
+
+      font-size: 10.5px;
+
+      font-weight: 700;
+
+      letter-spacing: 1.3px;
+
+      text-transform: uppercase;
+
+      color: #0f4cbd;
+    }
+
+
+    .signature {
+      margin-top: 1.8mm;
+
+      font-family: "JetBrains Mono", monospace;
+
+      font-size: 8.5px;
+
+      font-weight: 500;
+
+      color: #475569;
+
+      white-space: nowrap;
+    }
+
+
+    /* =====================================================
+       MARCA DA FRENTE
+    ====================================================== */
+
+    .brand {
+      position: relative;
+      z-index: 2;
+
+      font-family: "JetBrains Mono", monospace;
+
+      font-size: 9.5px;
+
+      font-weight: 700;
+
+      letter-spacing: 1.4px;
+
+      color: #0f4cbd;
+    }
+
+
+    /* =====================================================
+       VERSO DO CARTÃO
+    ====================================================== */
+
+    .back {
+      padding: 7mm;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: space-between;
+    }
+
+
+    .back::before {
+      content: "";
+
+      position: absolute;
+
+      width: 55mm;
+      height: 55mm;
+
+      left: -34mm;
+      top: -34mm;
+
+      border: 1px solid #e2e8f0;
+
+      border-radius: 50%;
+    }
+
+
+    .back-main {
+      position: relative;
+
+      z-index: 2;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      width: 100%;
+    }
+
+
+    /* =====================================================
+       INFORMAÇÕES DO VERSO
+    ====================================================== */
+
+    .info {
+      width: 50mm;
+    }
+
+
+    .headline {
+      margin: 0;
+
+      font-size: 13.5px;
+
+      line-height: 1.15;
+
+      letter-spacing: -0.4px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+    }
+
+
+    /* =====================================================
+       CONTATOS DO VERSO
+    ====================================================== */
+
+    .contacts {
+      margin-top: 3.5mm;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 1.5mm;
+
+      font-family: "JetBrains Mono", monospace;
+
+      font-size: 7px;
+
+      color: #4b5563;
+    }
+
+
+    .contact {
+      display: flex;
+
+      align-items: center;
+    }
+
+
+    .contact-label {
+      width: 13.5mm;
+
+      color: #0f4cbd;
+
+      font-weight: 600;
+    }
+
+
+    .contact-value {
+      color: #374151;
+    }
+
+
+    /* =====================================================
+       QR CODE DO VERSO
+    ====================================================== */
+
+    .qr-container {
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 1.2mm;
+    }
+
+
+    .qr {
+      width: 25mm;
+      height: 25mm;
+
+      padding: 1.8mm;
+
+      background: #ffffff;
+
+      border: 1px solid #dce3ec;
+
+      border-radius: 1mm;
+    }
+
+
+    .qr img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+    }
+
+
+    .qr-hint {
+      font-family: "JetBrains Mono", monospace;
+
+      font-size: 5.8px;
+
+      font-weight: 600;
+
+      color: #0f4cbd;
+
+      white-space: nowrap;
+
+      text-align: center;
+    }
+
+
+    /* =====================================================
+       FOOTER ALINHADO À ESQUERDA DO VERSO
+    ====================================================== */
+
+    .back-footer {
+      position: relative;
+
+      z-index: 2;
+
+      font-family: "JetBrains Mono", monospace;
+
+      font-size: 6.5px;
+
+      font-weight: 600;
+
+      letter-spacing: 1px;
+
+      color: #94a3b8;
+
+      text-align: left;
+    }
+
+
+    /* =====================================================
+       IMPRESSÃO
+    ====================================================== */
+
+    @media print {
+
+      body {
+        background: white;
+
+        padding: 0;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 10mm;
+      }
+
+
+      .card {
+        box-shadow: none;
+
+        break-inside: avoid;
+      }
+
+
+      @page {
+        size: A4;
+
+        margin: 20mm;
+      }
+
+    }
+
+
+    /* =====================================================
+       RESPONSIVO
+    ====================================================== */
+
+    @media screen and (max-width: 700px) {
+
+      body {
+        flex-direction: column;
+
+        padding: 25px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       FRENTE DO CARTÃO
+  ====================================================== -->
+
+  <div class="card front">
+
+    <div class="identity">
+
+      <h1 class="name">
+        Victor Hugo
+      </h1>
+
+
+      <div class="role">
+        Desenvolvedor de Software
+      </div>
+
+
+      <div class="signature">
+        Web • Sistemas • Automação • Dados • IA
+      </div>
+
+    </div>
+
+
+    <div class="brand">
+      CODRATEC®
+    </div>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       VERSO DO CARTÃO
+  ====================================================== -->
+
+  <div class="card back">
+
+
+    <!-- CONTEÚDO PRINCIPAL DO VERSO -->
+    <div class="back-main">
+
+      <!-- INFORMAÇÕES E CONTATOS -->
+      <div class="info">
+
+        <h2 class="headline">
+          Soluções em automação<br>
+          e Agentes de IA.
+        </h2>
+
+
+        <div class="contacts">
+
+          <div class="contact">
+            <span class="contact-label">
+              WhatsApp
+            </span>
+            <span class="contact-value">
+              (21) 98357-3881
+            </span>
+          </div>
+
+
+          <div class="contact">
+            <span class="contact-label">
+              E-mail
+            </span>
+            <span class="contact-value">
+              victor@codratec.com.br
+            </span>
+          </div>
+
+
+          <div class="contact">
+            <span class="contact-label">
+              Site
+            </span>
+            <span class="contact-value">
+              codratec.com.br
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- QR CODE -->
+      <div class="qr-container">
+
+        <div class="qr">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&margin=0&data=https%3A%2F%2Fcodratec.com.br%2Fvictor"
+            alt="QR Code"
+          >
+        </div>
+
+        <div class="qr-hint">
+          Aponte a câmera
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- FOOTER ALINHADO À ESQUERDA -->
+    <div class="back-footer">
+      CODRATEC® - SOFTWARE HOUSE
+    </div>
+
+
+  </div>
+
+
+</body>
+</html>
